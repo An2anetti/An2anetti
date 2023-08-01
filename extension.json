@@ -1,0 +1,14 @@
+{
+  "name": "CXPI Analyzer",
+  "apiVersion": "1.0.0",
+  "author": "Nikolay",
+  "version": "0.0.1",
+  "class": "CxpiAnalyzer",
+  "description": "Analyzes CXPI protocol packets",
+  "extensions": {
+    "CXPI Analyzer": {
+      "type": "HighLevelAnalyzer",
+      "entryPoint": "HighLevelAnalyzer.Hla"
+    }
+  }
+}
