@@ -3,6 +3,5 @@
   
 ## Getting started
 
-v1.01
-test start
+v1.02
   
