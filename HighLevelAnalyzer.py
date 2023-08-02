@@ -1,42 +1,48 @@
-from saleae.data import *
-from saleae.analyzers import HighLevelAnalyzer, AnalyzerFrame, StringSetting, NumberSetting, ChoicesSetting
+from saleae.analyzers import HighLevelAnalyzer, AnalyzerFrame, StringSettingOption
 
 class CxpiAnalyzer(HighLevelAnalyzer):
     # Определение настроек анализатора
-    my_string_setting = StringSetting(
+    my_string_setting = StringSettingOption(
+        id='my_string_setting',
         name='My String Setting',
         description='Enter a string:',
         default_value='Hello, World!'
     )
-    my_number_setting = NumberSetting(
-        name='My Number Setting',
-        description='Enter a number:',
-        min_value=0,
-        max_value=100,
-        default_value=50
-    )
-    my_choices_setting = ChoicesSetting(
-        name='My Choices Setting',
-        description='Choose an option:',
-        choices=('Option 1', 'Option 2', 'Option 3'),
-        default_value='Option 1'
-    )
+
+    def __init__(self):
+        # Инициализация анализатора
+        self.string_setting = self.my_string_setting
 
     def decode(self, frame: AnalyzerFrame):
         # Получаем данные из текущего фрейма
         data = frame.data['data']
 
-        # Разбираем данные пакета протокола CXPI
-        # и получаем необходимые для анализа параметры
-        # ...
+        # Проверяем длину пакета
+        if len(data) < 2:
+            # Пакет не полный, пропускаем его
+            return None
+
+        # Проверяем, что первый байт соответствует стартовому байту протокола CXPI
+        if data[0] != 0x80:
+            # Пакет не соответствует протоколу CXPI, пропускаем его
+            return None
+
+        # Извлекаем данные из пакета
+        data_length = data[1]
+        message_id = data[2]
+        message_data = data[3:3+data_length]
 
         # Создаем объект AnalyzerFrame с результатами анализа
-        result_data = {} # Определение переменной result_data
+        result_data = {
+            'data_length': data_length,
+            'message_id': message_id,
+            'message_data': message_data
+        }
         result_frame = AnalyzerFrame(
             'CXPI', 
             frame.start_time, 
             frame.end_time, 
-            {'result_data_key': result_data},
+            result_data,
             metadata=None,
             attachments=None
         )
