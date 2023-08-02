@@ -2,7 +2,7 @@
   "name": "CXPI Analyzer",
   "apiVersion": "1.0.0",
   "author": "Nikolay",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "class": "CxpiAnalyzer",
   "description": "Analyzes CXPI protocol packets",
   "extensions": {
