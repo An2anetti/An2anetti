@@ -1,25 +1,18 @@
 {
-  "name": "CXPI Analyzer",
-  "author": "Nikolay",
-  "version": "1.0.4",
-  "apiVersion": "1.0.0",
-  "class": "CxpiAnalyzer",
-  "description": "Analyzes Clock Extension Peripheral Interface (CXPI) protocol packets",
-  "help": "README.md",
-  "extensions": {
-    "CXPI Analyzer": {
-      "type": "HighLevelAnalyzer",
-      "entryPoint": "CxpiAnalyzer",
-      "supported_analyzers": ["logic2"],
-      "minimum_version": "2.4.9",
-      "maximum_version": "2.*.*",
-      "settings": {
-        "my_string_setting": {
-          "name": "My String Setting",
-          "description": "Enter a string:",
-          "default_value": "Hello, World!"
-        }
-      }
-    }
-  }
+    "apiVersion": "1.0.0",
+    "name": "CXPI Analyzer",
+    "version": "1.0.0",
+    "author": "Nikolay",
+    "description": "Анализатор CXPI",
+    "class_name": "CxpiAnalyzer",
+    "category": "other",
+    "icon": "",
+    "tags": [],
+    "extensions": {
+            "CXPI Analyzer": {
+                "type": "HighLevelAnalyzer",
+                "entryPoint": "HighLevelAnalyzer.CxpiAnalyzer"
+            }
+    },
+    "settings": []
 }
