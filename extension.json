@@ -9,10 +9,25 @@
     "icon": "",
     "tags": [],
     "extensions": {
+        "high_level_analyzers": {
             "CXPI Analyzer": {
                 "type": "HighLevelAnalyzer",
-                "entryPoint": "HighLevelAnalyzer.CxpiAnalyzer"
+                "entryPoint": "CxpiAnalyzer.CxpiAnalyzer"
             }
+        }
     },
-    "settings": []
+    "settings": [
+        {
+            "name": "option1",
+            "type": "bool",
+            "defaultValue": true,
+            "description": "Описание опции 1"
+        },
+        {
+            "name": "option2",
+            "type": "int",
+            "defaultValue": 10,
+            "description": "Описание опции 2"
+        }
+    ]
 }
