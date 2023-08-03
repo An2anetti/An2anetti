@@ -8,13 +8,10 @@
     "category": "other",
     "icon": "",
     "tags": [],
-    "extensions": {
-        "high_level_analyzers": {
-            "CXPI Analyzer": {
-                "type": "HighLevelAnalyzer",
-                "entryPoint": "HighLevelAnalyzer.CxpiAnalyzer"
-            }
-        }
+"extensions": {
+    "LIN Data": {
+      "type": "HighLevelAnalyzer",
+      "entryPoint": "CxpiAnalyzer.CxpiAnalyzer"
     },
     "settings": [
         {
