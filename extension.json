@@ -12,19 +12,5 @@
     "CxpiAnalyzer": {
       "type": "HighLevelAnalyzer",
       "entryPoint": "CxpiAnalyzer.CxpiAnalyzer"
-    },
-    "settings": [
-        {
-            "name": "option1",
-            "type": "bool",
-            "defaultValue": true,
-            "description": "Описание опции 1"
-        },
-        {
-            "name": "option2",
-            "type": "int",
-            "defaultValue": 10,
-            "description": "Описание опции 2"
-        }
-    ]
+    }
 }
