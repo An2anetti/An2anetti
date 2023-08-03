@@ -9,7 +9,7 @@
     "icon": "",
     "tags": [],
 "extensions": {
-    "LIN Data": {
+    "CxpiAnalyzer": {
       "type": "HighLevelAnalyzer",
       "entryPoint": "CxpiAnalyzer.CxpiAnalyzer"
     },
