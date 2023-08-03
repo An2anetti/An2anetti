@@ -11,6 +11,6 @@
 "extensions": {
     "CxpiAnalyzer": {
       "type": "HighLevelAnalyzer",
-      "entryPoint": "CxpiAnalyzer.CxpiAnalyzer"
+      "entryPoint": "HighLevelAnalyzer.Hla""
     }
 }
