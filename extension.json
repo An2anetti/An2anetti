@@ -12,7 +12,7 @@
         "high_level_analyzers": {
             "CXPI Analyzer": {
                 "type": "HighLevelAnalyzer",
-                "entryPoint": "CxpiAnalyzer.CxpiAnalyzer"
+                "entryPoint": "HighLevelAnalyzer.CxpiAnalyzer"
             }
         }
     },
