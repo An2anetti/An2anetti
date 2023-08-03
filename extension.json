@@ -4,7 +4,6 @@
     "version": "1.0.8",
     "author": "Nikolay",
     "description": "Анализатор CXPI",
-    "class_name": "CxpiAnalyzer",
     "category": "other",
     "icon": "",
     "tags": [],
