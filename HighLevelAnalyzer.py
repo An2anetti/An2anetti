@@ -5,7 +5,7 @@ class CxpiState(Enum):
     IDLE = 0
     DATA = 1
 
-class CxpiAnalyzer(HighLevelAnalyzer):
+class Hla(HighLevelAnalyzer):
     def __init__(self):
         self.current_state = CxpiState.IDLE
         self.current_byte = 0
