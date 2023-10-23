@@ -17,4 +17,4 @@ The CXPI Analyzer supports the following settings:
 
 ## Version
 
-v1.0.8
+v3.3.1
