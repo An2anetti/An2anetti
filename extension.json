@@ -10,7 +10,7 @@
 "extensions": {
     "CxpiAnalyzer": {
       "type": "HighLevelAnalyzer",
-      "entryPoint": "HighLevelAnalyzer.py"
+      "entryPoint": "HighLevelAnalyzer.Hla"
     }
 }
 }
