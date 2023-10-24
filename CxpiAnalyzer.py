@@ -10,8 +10,8 @@ class CxpiAnalyzer(HighLevelAnalyzer):
 
     CXPI_START = 0xC2
     CXPI_END = 0xC3
-    CXPI_BIT_0 = 11
-    CXPI_BIT_1 = 21
+    CXPI_BIT_0 = 11.375
+    CXPI_BIT_1 = 21.542
 
     def __init__(self):
         self.current_frame = []
