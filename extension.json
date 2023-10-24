@@ -1,7 +1,7 @@
 {
     "apiVersion": "1.0.0",
     "name": "CXPI Analyzer",
-    "version": "3.3.7",
+    "version": "3.3.8",
     "author": "Nikolay",
     "description": "Анализатор CXPI",
     "category": "other",
