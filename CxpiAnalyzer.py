@@ -10,21 +10,25 @@ class CxpiAnalyzer(HighLevelAnalyzer):
 
     CXPI_START = 0xC2
     CXPI_END = 0xC3
+    CXPI_BIT_0 = 11
+    CXPI_BIT_1 = 21
 
     def __init__(self):
         self.current_frame = []
+        self.bit_length = self.CXPI_BIT_0
 
     def decode(self, frame):
         if len(frame) > 0:
             if frame[0] == self.CXPI_START:
                 # Start of new frame
                 self.current_frame = []
+                self.bit_length = self.CXPI_BIT_0
 
             self.current_frame.extend(frame)
 
             if frame[-1] == self.CXPI_END:
                 # End of frame
-                data = ''.join('{:02X}'.format(byte) for byte in self.current_frame)
+                data = ''.join('1' if self.bit_length == self.CXPI_BIT_1 else '0' for _ in range(len(self.current_frame)))
                 return AnalyzerFrame('frame', len(self.current_frame), {'data': data})
 
     def decode_data(self, data):
