@@ -1,61 +1,34 @@
-from saleae.analyzers import HighLevelAnalyzer, AnalyzerFrame, StringSetting
+import asyncio
+import serial
 
-class CxpiAnalyzer(HighLevelAnalyzer):
-    result_types = {
-        'frame': {
-            'format': '{{data}}',
-            'name': 'Frame'
-        }
-    }
+CXPI_START = 0xC2
+CXPI_END = 0xC3
+THRESHOLD = 0.5  # Пороговое значение для определения "0" и "1" в долях времени
 
-    CXPI_START = 0xC2
-    CXPI_END = 0xC3
-    THRESHOLD = 0.5  # Пороговое значение для определения "0" и "1" в долях времени
+async def read_serial_data():
+    ser = serial.Serial('COM1', 9600)  # Замените 'COM1' на ваш порт и установите правильную скорость передачи данных
 
-    def __init__(self):
-        self.current_frame = []
-        self.bit_length = 0
+    current_frame = []
+    bit_length = 0
 
-    def decode(self, frame):
-        if len(frame) > 0:
-            if frame[0] == self.CXPI_START:
-                # Start of new frame
-                self.current_frame = []
+    while True:
+        data = ser.read(1)
+        duration = int.from_bytes(data, 'big')  # Преобразование данных в число
 
-            self.current_frame.extend(frame)
+        if duration == CXPI_START:
+            # Start of new frame
+            current_frame = []
+        elif duration == CXPI_END:
+            # End of frame
+            data = []
 
-            if frame[-1] == self.CXPI_END:
-                # End of frame
-                data = []
+            for duration in current_frame:
+                bit = '1' if duration > bit_length * THRESHOLD else '0'
+                data.append(bit)
 
-                for duration in self.current_frame:
-                    bit = '1' if duration > self.bit_length * self.THRESHOLD else '0'
-                    data.append(bit)
+            data_str = ''.join(data)
+            print(data_str)
 
-                data_str = ''.join(data)
-                return AnalyzerFrame('frame', len(self.current_frame), {'data': data_str})
+        current_frame.append(duration)
 
-    def decode_data(self, data):
-        frame = []
-
-        for duration in data:
-            frame.append(duration)
-
-        return self.decode(frame)
-
-    def decode_capture(self, capture, start, end):
-        return self.decode_data(capture[start:end])
-
-    def decode_capture_to_end(self, capture, start):
-        return self.decode_data(capture[start:])
-
-    def decode_capture_chunk(self, capture, start, end):
-        return self.decode_data(capture[start:end])
-
-    def settings(self):
-        return []
-
-    def generate_frames(self, data):
-        return []
-
-analyzer = CxpiAnalyzer()
+asyncio.run(read_serial_data())
